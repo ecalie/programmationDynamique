@@ -13,6 +13,10 @@ public class Turbine {
         this.coefficientPuissance = coeffs;
     }
 
+    public int getDebitMaxReel() {
+        return debitMaxReel;
+    }
+
     public int puissance(int hauteurChuteNette, int debit) {
         return 0;
     }

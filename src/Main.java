@@ -1,9 +1,7 @@
 public class Main {
 
-    public void resoudre() {
-        // backward pass
-        for (int s = 0 ; s <= Constante.debitTotal ; s += 5) {
-            
-        }
+
+    public static void main(String[] args) {
+        new SystemeResolution().resoudre();
     }
 }
