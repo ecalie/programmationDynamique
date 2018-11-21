@@ -1,14 +1,6 @@
 public class SystemeResolution {
 
-    public void resoudre() {
-        // création des turbines
-        // TODO : ajouter les coefficients pour le calcul de la puissance
-        Turbine turbine1 = new Turbine(1, 0, null);
-        Turbine turbine2 = new Turbine(2, 0, null);
-        Turbine turbine3 = new Turbine(3, 0, null);
-        Turbine turbine4 = new Turbine(4, 0, null);
-        Turbine turbine5 = new Turbine(5, 0, null);
-
+    public void resoudre(Turbine turbine1, Turbine turbine2, Turbine turbine3, Turbine turbine4, Turbine turbine5 ) {
         // calcul de la hauteur de chutte nette
         // h = elevAmon - elevAval - pertes
         int h = (int) (Constante.elevAmont
@@ -28,20 +20,20 @@ public class SystemeResolution {
         Table table1 =  this.creerTable1(turbine1, h);
 
         // Forward pass
-        int Q1 = table1.getX(Constante.debitTotal);
-        int S1 = table1.getF(Constante.debitTotal);
+        double Q1 = table1.getX(Constante.debitTotal);
+        double S1 = table1.getF(Constante.debitTotal);
 
-        int Q2 = table2.getX(S1 - Q1);
-        int S2 = table2.getF(S1 - Q1);
+        double Q2 = table2.getX(S1 - Q1);
+        double S2 = table2.getF(S1 - Q1);
 
-        int Q3 = table2.getX(S2 - Q2);
-        int S3 = table2.getF(S2 - Q2);
+        double Q3 = table3.getX(S2 - Q2);
+        double S3 = table3.getF(S2 - Q2);
 
-        int Q4 = table2.getX(S3 - Q3);
-        int S4 = table2.getF(S3 - Q3);
+        double Q4 = table4.getX(S3 - Q3);
+        double S4 = table4.getF(S3 - Q3);
 
-        int Q5 = table2.getX(S4 - Q4);
-        int S5 = table2.getF(S4 - Q4);
+        double Q5 = table5.getX(S4 - Q4);
+        double S5 = table5.getF(S4 - Q4);
 
         System.out.println("debit turbine 1 : " + Q1);
         System.out.println("debit turbine 2 : " + Q2);
@@ -50,19 +42,19 @@ public class SystemeResolution {
         System.out.println("debit turbine 5 : " + Q5);
     }
 
-    public Table creerTable5(Turbine tur, int hauteur) {
+    public Table creerTable5(Turbine tur, double hauteur) {
         Table table5 = new Table();
         for (int s = 0 ; s <= Constante.debitTotal ; s += 5) {
-            int f = tur.puissance(hauteur, s);
+            double f = tur.puissance(hauteur, s);
             table5.ajouterLigne(s, f);
         }
         return table5;
     }
 
-    public Table creerTable4_2(Turbine tur, int hauteur) {
+    public Table creerTable4_2(Turbine tur, double hauteur) {
         Table table = new Table();
         for (int s = 0 ; s <= Constante.debitTotal ; s += 5) {
-            int[] fs = new int[tur.getDebitMaxReel() / 5 + 1];
+            double[] fs = new double[(int) (tur.getDebitMaxReel() / 5 + 1)];
             for (int x = 0 ; x < tur.getDebitMaxReel() ;  x += 5) {
                 fs[x/5] = tur.puissance(hauteur, s);
             }
@@ -71,9 +63,9 @@ public class SystemeResolution {
         return table;
     }
 
-    public Table creerTable1(Turbine tur, int hauteur) {
+    public Table creerTable1(Turbine tur, double hauteur) {
         Table table = new Table();
-        int[] fs = new int[tur.getDebitMaxReel() / 5 + 1];
+        double[] fs = new double[(int) (tur.getDebitMaxReel() / 5 + 1)];
         for (int x = 0 ; x < tur.getDebitMaxReel() ;  x += 5) {
             fs[x/5] = tur.puissance(hauteur, Constante.debitTotal);
         }

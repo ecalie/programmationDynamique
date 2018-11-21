@@ -1,7 +1,7 @@
 public class Constante {
 
-    public static int debitTotal;
-    public static int elevAmont;
-    public static int coeffPertes = (int) (0.5 * Math.pow(10,-5));
+    public static double debitTotal;
+    public static double elevAmont;
+    public static double coeffPertes = 0.5 * Math.pow(10,-5);
 
 }

@@ -1,10 +1,10 @@
 public class Ligne {
 
-    private int f;
+    private double f;
     private int x;
 
-    public Ligne(int... valeurs) {
-        int max = valeurs[0];
+    public Ligne(double... valeurs) {
+        double max = valeurs[0];
         int ind = 0;
         for (int i = 0 ; i < valeurs.length ; i++) {
             if (max < valeurs[i]) {
@@ -16,7 +16,7 @@ public class Ligne {
         this.x = ind;
     }
 
-    public int getF() {
+    public double getF() {
         return f;
     }
 
