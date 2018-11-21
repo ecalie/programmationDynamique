@@ -5,7 +5,7 @@ public class Main {
         // créer les turbines
         //      - turbine 1
         double[][] coeffTurbine1 = {{0.01795,-0.1966,0.002889,-1.194*Math.pow(10,-5)},
-                                    {-0.0004493,0.008152,7.483*Math.pow(10,6)}};
+                                    {-0.0004493,0.008152,7.483*Math.pow(10,-6)}};
         Turbine turbine1 = new Turbine(1, 160,coeffTurbine1);
 
         //      - turbine 2
@@ -25,7 +25,7 @@ public class Main {
         Turbine turbine5 = new Turbine(5, 160, coeffTurbine5);
 
         // initialiser les constantes (entrée)
-        Constante.debitTotal = 550;
+        Constante.debitTotal = 580;
         Constante.elevAmont = 172.110;
 
 

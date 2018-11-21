@@ -20,20 +20,20 @@ public class SystemeResolution {
         table1 =  this.creerTable1(turbine1);
 
         // Forward pass
-        double Q1 = table1.getX(Constante.debitTotal);
-        double S1 = Constante.debitTotal - Q1;
+        int Q1 = table1.getX(Constante.debitTotal);
+        int S1 = Constante.debitTotal - Q1;
 
-        double Q2 = table2.getX(S1);
-        double S2 = S1 - Q2;
+        int Q2 = table2.getX(S1);
+        int S2 = S1 - Q2;
 
-        double Q3 = table3.getX(S2);
-        double S3 = S2 - Q3;
+        int Q3 = table3.getX(S2);
+        int S3 = S2 - Q3;
 
-        double Q4 = table4.getX(S3);
-        double S4 = S3 - Q4;
+        int Q4 = table4.getX(S3);
+        int S4 = S3 - Q4;
 
-        double Q5 = table5.getX(S4);
-        double S5 = S4 - Q5;
+        int Q5 = table5.getX(S4);
+        int S5 = S4 - Q5;
 
         System.out.println("debit turbine 1 : " + Q1);
         System.out.println("debit turbine 2 : " + Q2);
@@ -45,8 +45,12 @@ public class SystemeResolution {
     public Table creerTable5(Turbine tur) {
         Table table5 = new Table();
         for (int s = 0 ; s <= Constante.debitTotal ; s += 5) {
-            double f = tur.puissance(s);
-            table5.ajouterLigne(s, f);
+            double f;
+            if (s > tur.getDebitMaxReel())
+                f = 0;
+            else
+                f = tur.puissance(s);
+            table5.ajouterLigne5(s, (s>tur.getDebitMaxReel()?tur.getDebitMaxReel()/5:s/5), f);
         }
         return table5;
     }
@@ -54,9 +58,9 @@ public class SystemeResolution {
     public Table creerTable4_2(Turbine tur) {
         Table table = new Table();
         for (int s = 0 ; s <= Constante.debitTotal ; s += 5) {
-            double[] fs = new double[(int) (tur.getDebitMaxReel() / 5 + 1)];
+            double[] fs = new double[tur.getDebitMaxReel() / 5 + 1];
             for (int x = 0 ; x <= tur.getDebitMaxReel();  x += 5) {
-                if (x > s)
+                if (x > s || x > tur.getDebitMaxReel())
                     fs[x/5] = 0;
                 else
                     fs[x/5] = f(s, x, tur);
@@ -70,13 +74,16 @@ public class SystemeResolution {
         Table table = new Table();
         double[] fs = new double[(int) (tur.getDebitMaxReel() / 5 + 1)];
         for (int x = 0 ; x <= tur.getDebitMaxReel() ;  x += 5) {
-            fs[x/5] = f(Constante.debitTotal, x, tur);
+            if (x > tur.getDebitMaxReel())
+                fs[x/5] = 0;
+            else
+                fs[x/5] = f(Constante.debitTotal, x, tur);
         }
         table.ajouterLigne(Constante.debitTotal, fs);
         return table;
     }
 
-    public double f(double debitRestant, double debit, Turbine turb) {
+    public double f(int debitRestant, int debit, Turbine turb) {
         if (debit > debitRestant)
             return 0;
         switch (turb.getNumero()) {

@@ -23,4 +23,13 @@ public class Ligne {
     public int getX() {
         return x*5;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public String toString() {
+        return "" + getX();
+    }
 }

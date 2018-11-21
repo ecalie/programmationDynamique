@@ -1,18 +1,25 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Table extends HashMap<Double, Ligne> {
+public class Table extends HashMap<Integer, Ligne> {
 
     public Table() {
         super();
     }
 
-    public void ajouterLigne(double S, double... valeurs) {
+    public void ajouterLigne(int S, double... valeurs) {
         Ligne l = new Ligne(valeurs);
         this.put(S, l);
     }
 
-    public double getX(double s) {
+    // cas particuler pour la table 5
+    public void ajouterLigne5(int S, int x, double... valeurs) {
+        Ligne l = new Ligne(valeurs);
+        l.setX(x);
+        this.put(S, l);
+    }
+
+    public int getX(int s) {
         return this.get(s).getX();
     }
 
