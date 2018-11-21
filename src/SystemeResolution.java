@@ -13,7 +13,7 @@ public class SystemeResolution {
         // h = elevAmon - elevAval - pertes
         int h = (int) (Constante.elevAmont
                 - 0.003261 * Constante.debitTotal + 137.4
-                - 0.5*0.00005 * Constante.debitTotal * Constante.debitTotal);
+                - Constante.coeffPertes * Constante.debitTotal * Constante.debitTotal);
 
         // backward pass
         //      - n = 5
