@@ -14,8 +14,11 @@ public class Turbine {
         this.coefficientPuissance = coefficientPuissance;
     }
 
-    public double puissance(double hauteurChuteNette, double debit) {
+    public double puissance(double debit) {
         double puissance=0;
+        double hauteurChuteNette = Constante.elevAmont
+                - 0.003261 * Constante.debitTotal + 137.4
+                - Constante.coeffPertes * debit * debit;
         for(int i = 0; i<coefficientPuissance.length; i=i+1){
             for(int j = 0;j<coefficientPuissance[i].length;j=j+1){
                     puissance = puissance + coefficientPuissance[i][j] * Math.pow(hauteurChuteNette, i) * Math.pow(debit, j);
