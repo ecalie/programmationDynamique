@@ -21,6 +21,6 @@ public class Ligne {
     }
 
     public int getX() {
-        return x;
+        return x*5;
     }
 }

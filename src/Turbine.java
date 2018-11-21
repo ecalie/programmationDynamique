@@ -17,11 +17,13 @@ public class Turbine {
     public double puissance(double debit) {
         double puissance=0;
         double hauteurChuteNette = Constante.elevAmont
-                - 0.003261 * Constante.debitTotal + 137.4
+                - (0.003261 * Constante.debitTotal + 137.4)
                 - Constante.coeffPertes * debit * debit;
         for(int i = 0; i<coefficientPuissance.length; i=i+1){
             for(int j = 0;j<coefficientPuissance[i].length;j=j+1){
-                    puissance = puissance + coefficientPuissance[i][j] * Math.pow(hauteurChuteNette, i) * Math.pow(debit, j);
+                System.out.println("h^" + i + "  q^" + j);
+                System.out.println(coefficientPuissance[i][j]);
+                puissance = puissance + coefficientPuissance[i][j] * Math.pow(hauteurChuteNette, i) * Math.pow(debit, j);
             }
         }
         return puissance;
