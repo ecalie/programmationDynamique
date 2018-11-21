@@ -5,7 +5,6 @@ public class Turbine {
     private double debitMaxReel;
     private double debitReel;
     private double[][] coefficientPuissance;
-    final int POLYNOME_DEGREE_MAX = 5;
 
     public Turbine(int numero, int debitMax, double[][] coefficientPuissance) {
         this.numero = numero;
@@ -17,11 +16,9 @@ public class Turbine {
 
     public double puissance(double hauteurChuteNette, double debit) {
         double puissance=0;
-        for(int i = 0; i<POLYNOME_DEGREE_MAX; i=i+1){
-            for(int j = 0;j<POLYNOME_DEGREE_MAX;j=j+1){
-                try {
+        for(int i = 0; i<coefficientPuissance.length; i=i+1){
+            for(int j = 0;j<coefficientPuissance[i].length;j=j+1){
                     puissance = puissance + coefficientPuissance[i][j] * Math.pow(hauteurChuteNette, i) * Math.pow(debit, j);
-                } catch (ArrayIndexOutOfBoundsException e) {}
             }
         }
         return puissance;
