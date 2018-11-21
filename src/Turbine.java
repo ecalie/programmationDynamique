@@ -7,10 +7,10 @@ public class Turbine {
     private double[][] coefficientPuissance;
     final int POLYNOME_DEGREE_MAX = 5;
 
-    public Turbine(int numero, int debitMax, int debitMaxReel, double[][] coefficientPuissance) {
+    public Turbine(int numero, int debitMax, double[][] coefficientPuissance) {
         this.numero = numero;
         this.debitMax = debitMax;
-        this.debitMaxReel = debitMaxReel;
+        this.debitMaxReel = debitMax;
         this.debitReel = 0;
         this.coefficientPuissance = coefficientPuissance;
     }
@@ -39,7 +39,7 @@ public class Turbine {
         return debitMax;
     }
 
-    public void setDebitMax(int debitMax) {
+    public void setDebitMax(double debitMax) {
         this.debitMax = debitMax;
     }
 
