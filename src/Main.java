@@ -1,7 +1,10 @@
+import java.util.Scanner;
+
 public class Main {
 
 
     public static void main(String[] args) {
+        int debitTotal;
         // créer les turbines
         //      - turbine 1
         double[][] coeffTurbine1 = {{0.01795,-0.1966,0.002889,-1.194*Math.pow(10,-5)},
@@ -21,14 +24,24 @@ public class Main {
         Turbine turbine4 = new Turbine(4, 160, coeffTurbine4);
 
         //      - turbine 5
-        double[][] coeffTurbine5 = {{-0.004301,-0.08809,0.00288,-0.00003086,0.00000008458},{0.0001528,0.00009614,0.0001387,-0.0000004462}};
+        double[][] coeffTurbine5 = {{-0.004301,-0.08809,0.002881,-0.00003086,0.00000008458},{0.0001528,0.00009614,0.0001387,-0.0000004462}};
         Turbine turbine5 = new Turbine(5, 160, coeffTurbine5);
 
         // initialiser les constantes (entrée)
-        Constante.debitTotal = 580;
-        Constante.elevAmont = 172.110;
-
+        Scanner sc = new Scanner(System.in);
+        debitTotal     =(int) sc.nextFloat();
+        Constante.elevAmont = sc.nextFloat();
+        if(debitTotal%5 !=0){
+            if(debitTotal%5 <3){
+                debitTotal=debitTotal-(debitTotal%5);
+            }else{
+                debitTotal=debitTotal-(debitTotal%5)+5;
+            }
+        }
+        Constante.debitTotal = debitTotal;
 
         new SystemeResolution().resoudre(turbine1, turbine2, turbine3, turbine4, turbine5);
+        System.out.println(turbine1.getDebitReel()+","+turbine2.getDebitReel()+","+turbine3.getDebitReel()+","+
+                turbine4.getDebitReel()+","+turbine5.getDebitReel()+"\n");
     }
 }

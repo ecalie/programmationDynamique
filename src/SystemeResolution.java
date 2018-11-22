@@ -7,6 +7,13 @@ public class SystemeResolution {
     private Table table5;
 
     public void resoudre(Turbine turbine1, Turbine turbine2, Turbine turbine3, Turbine turbine4, Turbine turbine5 ) {
+        // Initialisation des turbines
+        turbine1.setDebitReel(0);
+        turbine2.setDebitReel(0);
+        turbine3.setDebitReel(0);
+        turbine4.setDebitReel(0);
+        turbine5.setDebitReel(0);
+
         // backward pass
         //      - n = 5
         table5 = this.creerTable5(turbine5);
@@ -33,13 +40,14 @@ public class SystemeResolution {
         int S4 = S3 - Q4;
 
         int Q5 = table5.getX(S4);
-        int S5 = S4 - Q5;
+        //int S5 = S4 - Q5;
 
-        System.out.println("debit turbine 1 : " + Q1);
-        System.out.println("debit turbine 2 : " + Q2);
-        System.out.println("debit turbine 3 : " + Q3);
-        System.out.println("debit turbine 4 : " + Q4);
-        System.out.println("debit turbine 5 : " + Q5);
+
+        turbine1.setDebitReel(Q1);
+        turbine2.setDebitReel(Q2);
+        turbine3.setDebitReel(Q3);
+        turbine4.setDebitReel(Q4);
+        turbine5.setDebitReel(Q5);
     }
 
     public Table creerTable5(Turbine tur) {
