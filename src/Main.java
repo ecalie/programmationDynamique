@@ -49,8 +49,10 @@ public class Main {
             new SystemeResolution().resoudre(turbine1, turbine2, turbine3, turbine4, turbine5);
 
             // affichage des résultat
+            //Q1,Q2,Q3,Q4,Q5,Puissance totale
             System.out.println(turbine1.getDebitReel()+","+turbine2.getDebitReel()+","+turbine3.getDebitReel()+","+
-                    turbine4.getDebitReel()+","+turbine5.getDebitReel());
+                    turbine4.getDebitReel()+","+turbine5.getDebitReel()+","+(turbine1.puissance(turbine1.getDebitReel())+turbine2.puissance(turbine2.getDebitReel())+turbine3.puissance(turbine3.getDebitReel())+
+                    turbine4.puissance(turbine4.getDebitReel())+turbine5.puissance(turbine5.getDebitReel())));
         }
 
         //close reader
