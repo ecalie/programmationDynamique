@@ -40,8 +40,6 @@ public class SystemeResolution {
         int S4 = S3 - Q4;
 
         int Q5 = table5.getX(S4);
-        //int S5 = S4 - Q5;
-
 
         turbine1.setDebitReel(Q1);
         turbine2.setDebitReel(Q2);
