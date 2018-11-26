@@ -7,6 +7,12 @@ public class Table extends HashMap<Integer, Ligne> {
         super();
     }
 
+    /**
+     * Ajouter une ligne dans la table (la ligne corresponsante à une valeur de S_n)
+     * On sélectionne la valeurs maximale et on l'enrgistre avec la valeur de s corresponante.
+     * @param S la valeur de s_n
+     * @param valeurs toutes les valeurs de f(s_n, s_n)
+     */
     public void ajouterLigne(int S, double... valeurs) {
         Ligne l = new Ligne(valeurs);
         this.put(S, l);
@@ -26,6 +32,4 @@ public class Table extends HashMap<Integer, Ligne> {
     public double getF(double s){
         return this.get(s).getF();
     }
-
-
 }
